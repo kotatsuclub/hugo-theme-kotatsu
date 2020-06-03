@@ -1,0 +1,38 @@
+{{ define "main" }}
+
+    <div class="columns">
+        <div class="column is-8 is-offset-2">
+            <h1 class="title is-size-1">{{ .Title }}</h1>
+            <hr>
+            {{ if isset .Params "author" }}
+            <div class="media">
+                <div class="media-content">
+                    <p class="title is-5"><a href="/author/{{ .Params.author | urlize }}">{{ .Params.author }}</a></p>
+                    <p class="subtitle is-7">{{ .Date.Format "January 2, 2006" }}</p>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+
+    <div class="columns">
+        <div class="column is-8 is-offset-2">
+            <div class="content">
+                {{ .Content }}
+            </div>
+            <div>
+            {{ range (.GetTerms "tags") }}
+                <a class="tag" href="{{ .Permalink }}">{{ .LinkTitle }}</a>
+            {{ end}}
+            </div>
+        </div>
+    </div>
+
+    <div class="columns">
+        <div class="column is-8 is-offset-2">
+            {{ template "_internal/disqus.html" . }}
+        </div>
+    </div>
+
+{{ end }}
+

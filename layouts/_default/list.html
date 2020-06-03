@@ -1,0 +1,17 @@
+{{ define "main" }}
+    {{ $paginator := .Paginator }}
+    <div class="columns">
+        <div class="column is-8 is-offset-2">
+            <h1 class="title is-size-1">{{ .Title }}</h1>
+            <hr>
+            {{ range $paginator.Pages }}
+                {{ partial "summary.html" . }}
+            {{ end }}
+        </div>
+    </div>
+    <div class="columns">
+        <div class="column is-8 is-offset-2">
+            {{ partial "paginator.html" $paginator }}
+        </div>
+    </div>
+{{ end }}

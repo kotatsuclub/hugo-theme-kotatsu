@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="{{ $.Site.LanguageCode | default "en" }}" class="has-navbar-fixed-top">
+<head>
+    <meta charset="utf-8">
+    <title>{{ .Site.Title }} {{ with .Title }} | {{ . }}{{ end }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link rel="stylesheet" href="{{ "css/site.css" | absURL }}" />
+    {{ with .OutputFormats.Get "rss" -}}
+        {{ $link := .Permalink }}
+        {{ if isset $.Site.Params.override "rss" }}
+            {{ $link = $.Site.Params.override.rss }}
+        {{ end }}
+        {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type $link $.Site.Title | safeHTML }}
+    {{ end -}}
+
+    {{ template "_internal/google_analytics_async.html" . }}
+</head>
+<body>
+
+    {{ partial "navbar.html" . }}
+
+    <div class="container">
+        <div class="section">
+            {{ block "main" . }}{{ end }}
+        </div>
+    </div>
+
+    {{ partial "footer.html" . }}
+</body>
+</html>

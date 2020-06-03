@@ -1,0 +1,11 @@
+html,
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+body > footer {
+    margin-top: auto;
+}
+.icon-link { color: white }
+.icon-link:hover { color: white }

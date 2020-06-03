@@ -1,0 +1,29 @@
+<footer class="footer has-background-grey-darker has-text-white">
+    <div class="content has-text-centered">
+        {{ with .Site.Params.social.github }}
+        <span class="icon is-large">
+            <a href="{{ . | safeURL }}" rel="me" target="_blank" class="icon-link">
+                <i class="fab fa-github fa-3x"></i>
+            </a>
+        </span>&nbsp;&nbsp;
+        {{ end }}
+        {{ with .Site.Params.social.twitter }}
+        <span class="icon is-large">
+            <a href="{{ . | safeURL }}" rel="me" target="_blank" class="icon-link">
+                <i class="fab fa-twitter fa-3x"></i>
+            </a>
+        </span>&nbsp;&nbsp;
+        {{ end }}
+        <span class="icon is-large ">
+            {{ with .OutputFormats.Get "rss" -}}
+                {{ $link := .Permalink }}
+                {{ if isset $.Site.Params.override "rss" }}
+                    {{ $link = $.Site.Params.override.rss }}
+                {{ end }}
+                {{ printf `<a rel="%s" type="%s" href="%s" title="%s" class="icon-link"><i class="fa fa-rss fa-3x"></i></a>` .Rel .MediaType.Type $link $.Site.Title | safeHTML }}
+            {{ end -}}
+        </span>&nbsp;&nbsp;
+        <br><br>
+        Copyright &copy; {{ .Site.Title }} {{ now.Format "2006"}}
+    </div>
+</footer>
