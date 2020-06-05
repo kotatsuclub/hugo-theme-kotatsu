@@ -16,7 +16,7 @@
         {{ end }}
         <span class="icon is-large ">
             {{ with .OutputFormats.Get "rss" -}}
-                {{ $link := .Permalink }}
+                {{ $link := .RelPermalink }}
                 {{ if isset $.Site.Params.override "rss" }}
                     {{ $link = $.Site.Params.override.rss }}
                 {{ end }}

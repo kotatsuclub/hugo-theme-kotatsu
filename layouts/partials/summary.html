@@ -1,7 +1,7 @@
 <article class="media">
   <div class="media-content">
       <div class="content">
-          <p class="title is-4"><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></p>
+          <p class="title is-4"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></p>
           {{ with .Params.cover }}
               <p><img class="image" src="{{ . }}" ></p>
           {{ end }}

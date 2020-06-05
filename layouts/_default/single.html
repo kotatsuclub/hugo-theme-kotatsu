@@ -22,7 +22,7 @@
             </div>
             <div>
             {{ range (.GetTerms "tags") }}
-                <a class="tag" href="{{ .Permalink }}">{{ .LinkTitle }}</a>
+                <a class="tag" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
             {{ end}}
             </div>
         </div>
