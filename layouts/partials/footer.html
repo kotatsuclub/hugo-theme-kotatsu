@@ -14,15 +14,13 @@
             </a>
         </span>&nbsp;&nbsp;
         {{ end }}
-        <span class="icon is-large ">
-            {{ with .OutputFormats.Get "rss" -}}
-                {{ $link := .RelPermalink }}
-                {{ if isset $.Site.Params.override "rss" }}
-                    {{ $link = $.Site.Params.override.rss }}
-                {{ end }}
-                {{ printf `<a rel="%s" type="%s" href="%s" title="%s" class="icon-link"><i class="fa fa-rss fa-3x"></i></a>` .Rel .MediaType.Type $link $.Site.Title | safeHTML }}
-            {{ end -}}
+        {{ with .Site.Params.rss.rel }}
+        <span class="icon is-large">
+            <a href="{{ . | safeURL }}" rel="me" target="_blank" class="icon-link">
+                <i class="fa fa-rss fa-3x"></i>
+            </a>
         </span>&nbsp;&nbsp;
+        {{ end }}
         <br><br>
         Copyright &copy; {{ .Site.Title }} {{ now.Format "2006"}}
     </div>

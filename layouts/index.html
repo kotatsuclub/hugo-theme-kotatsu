@@ -1,15 +1,16 @@
 {{ define "main" }}
     {{ $paginator := .Paginate (where .Site.RegularPages "Type" "post").ByPublishDate.Reverse }}
-    <div class="columns">
-        <div class="column is-8 is-offset-2">
-            {{ range $paginator.Pages }}
-                {{ partial "summary.html" . }}
-            {{ end }}
+
+    <div class="columns is-centered is-multiline">
+        {{ range $paginator.Pages }}
+        <div class="column is-8">
+            {{ partial "summary.html" . }}
         </div>
-    </div>
-    <div class="columns">
-        <div class="column is-8 is-offset-2">
+        {{ end }}
+
+        <div class="column is-8">
             {{ partial "paginator.html" $paginator }}
         </div>
     </div>
+    
 {{ end }}

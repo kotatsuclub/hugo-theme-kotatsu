@@ -1,20 +1,35 @@
-<article class="media">
-  <div class="media-content">
-      <div class="content">
-          <p class="title is-4"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></p>
-          {{ with .Params.cover }}
-              <p><img class="image" src="{{ . }}" ></p>
-          {{ end }}
-          {{ with .Summary }}
-          <div class="content">
-            {{ . }}
-          </div>
-          {{ end }}
-          {{ if isset .Params "author" }}
-          <p class="subtitle is-size-7 has-text-grey-light">
-              <a href="/author/{{ .Params.author | urlize }}">{{ .Params.author }}</a> &middot; {{ .Date.Format "January 2, 2006" }}
-          </p>
-          {{ end }}
-      </div>
+<div class="card">
+  {{ with .Params.cover }}
+  <div class="card-image">
+    <figure class="image ">
+        <img class="image" src="{{ . }}" >
+    </figure>
   </div>
-</article>
+  {{ end }}
+
+  <div class="card-content">
+    <div class="media">
+      <div class="media-content">
+
+        <p class="has-text-weight-semibold is-size-4"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></p>
+
+        {{ if isset .Params "author" }}
+        <p class="subtitle is-size-7 has-text-grey-light">
+            <a href="/author/{{ .Params.author | urlize }}">{{ .Params.author }}</a> &middot; {{ .Date.Format "January 2, 2006" }}
+        </p>
+        {{ end }}
+        
+      </div>
+    </div>
+
+    {{ with .Summary }}
+    <div class="content">
+      {{ . }}
+    </div>
+    {{ end }}
+    
+    {{ range (.GetTerms "tags") }}
+    <a class="tag" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+    {{ end}}
+  </div>
+</div>
