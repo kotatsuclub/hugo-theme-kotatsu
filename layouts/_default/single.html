@@ -1,8 +1,6 @@
 {{ define "main" }}
     <div class="columns is-centered is-multiline">
-        <div class="column is-8 box">
-            <h1 class="title is-size-2">{{ .Title }}</h1>
-
+        <div class="column is-8">
             {{ if isset .Params "author" }}
                 <p class="has-text-weight-semibold is-size-5"><a href="/author/{{ .Params.author | urlize }}">{{ .Params.author }}</a></p>
                 <p class="subtitle is-7">{{ .Date.Format "January 2, 2006" }}</p>

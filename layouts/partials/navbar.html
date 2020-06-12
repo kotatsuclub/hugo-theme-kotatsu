@@ -1,5 +1,21 @@
-<nav class="navbar is-dark is-fixed-top" >
+<nav class="navbar is-fixed-top is-black">
     <div class="navbar-brand">
-        <a class="navbar-item title is-size-5" href="{{ .Site.BaseURL | relURL }}">{{ .Site.Title }}</a>
+        <a class="navbar-item title is-size-5" href="{{ .Site.BaseURL | relURL }}">
+            {{ if .IsHome }}
+                Home
+            {{ else }}
+                {{ .Site.Title }}
+            {{ end }}
+        </a>
     </div>
 </nav>
+
+<section class="hero is-medium is-black">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <h1 class="title">
+          {{ .Title }}
+        </h1>
+      </div>
+    </div>
+</section>
