@@ -1,6 +1,5 @@
 {{ define "main" }}
-    {{ $paginator := .Paginate (where .Site.RegularPages "Type" "post").ByPublishDate.Reverse }}
-
+{{ $paginator := .Paginator }}
     {{ range $paginator.Pages }}
     <div class="block">
         {{ partial "summary.html" . }}
@@ -10,5 +9,4 @@
     <div class="block">
         {{ partial "paginator.html" $paginator }}
     </div>
-    
 {{ end }}

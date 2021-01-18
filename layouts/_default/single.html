@@ -1,26 +1,27 @@
 {{ define "main" }}
-    <div class="columns is-centered is-multiline">
-        <div class="column is-8">
-            {{ if isset .Params "author" }}
-                <p class="has-text-weight-semibold is-size-5"><a href="/author/{{ .Params.author | urlize }}">{{ .Params.author }}</a></p>
-                <p class="subtitle is-7">{{ .Date.Format "January 2, 2006" }}</p>
-            {{ end }}
+    <div class="block has-text-weight-semibold is-size-3">
+        {{ .LinkTitle }}
+    </div>
 
-            <div class="content">
-                {{ .Content }}
-            </div>
+    {{ if isset .Params "author" }}
+    <div class="block">
+        <p class="has-text-weight-semibold is-size-6"><a href="/author/{{ .Params.author | urlize }}">{{ .Params.author }}</a></p>
+        <p class="subtitle is-7 has-text-grey-light">{{ .Date.Format "January 2, 2006" }}</p>
+    </div>
+    {{ end }}
 
-            <div>
-            {{ range (.GetTerms "tags") }}
-                <a class="tag" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
-            {{ end}}
-            </div>
+    <div class="content block">
+        {{ .Content }}
+    </div>
 
-        </div>
+    <div class="block">
+        {{ range (.GetTerms "tags") }}
+            <a class="tag" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+        {{ end}}
+    </div>
 
-        <div class="column is-8 box">
-            {{ template "_internal/disqus.html" . }}
-        </div>
+    <div class="block">
+        {{ template "_internal/disqus.html" . }}
     </div>
 {{ end }}
 

@@ -1,0 +1,84 @@
+/*! hugo-theme-kotatsuclub */
+
+html,
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-color);
+  color: var(--font-color);
+}
+
+body > footer {
+    margin-top: auto;
+}
+
+.footer {
+    background-color: var(--bg-color);
+}
+
+h1 {
+    color: var(--primary-color);
+}
+
+strong {
+    color: var(--primary-color);
+}
+
+a {
+    color: var(--primary-color);
+}
+
+.content a {
+    text-decoration: underline;
+}
+
+.columns.is-vcentered {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+figcaption{
+  word-break: break-word;
+}
+
+nav {
+    padding-top: 2em;
+}
+
+.main {
+    max-width: 50rem;
+    column-width: 50rem;
+}
+
+.icon-md {
+    overflow: visible;
+    width: .875em;
+    vertical-align: -.225em;
+    font-size: 1.3333333333em;
+    line-height: .75em;
+    display: inline-block;
+    height: 1em;
+}
+
+.icon-lg {
+    overflow: visible;
+    width: 1em;
+    font-size: 3em;
+    display: inline-block;
+    height: 1em;
+    vertical-align: -.125em;
+}
+
+:root {
+    --primary-color: #4a4a4a;
+    --font-color: black;
+    --bg-color: white;
+}
+
+[data-theme="dark"] {
+    --primary-color: white;
+    --font-color: white;
+    --bg-color: #0d1117;
+}
