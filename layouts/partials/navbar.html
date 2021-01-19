@@ -18,7 +18,7 @@
       <h2 class="subtitle">
         {{ if not .IsHome }}
           {{ with .Page.Data.Plural }}
-          / <a href="{{. | relURL}}">{{ . }}</a>
+          / <a href="{{ . | relURL}}">{{ . }}</a>
           {{ end }}
           {{ with .Page.Data.Term }}
           / {{ . }}
