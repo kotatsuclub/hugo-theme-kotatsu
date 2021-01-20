@@ -17,15 +17,29 @@ body > footer {
     background-color: var(--bg-color);
 }
 
-h1 {
+
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6, 
+.content h1, 
+.content h2, 
+.content h3, 
+.content h4, 
+.content h5, 
+.content h6, 
+.content strong,
+.subtitle {
     color: var(--primary-color);
 }
 
-strong {
-    color: var(--primary-color);
+a.tag, a.tag:hover {
+    color: var(--secondary-color)
 }
 
-a {
+a, a:hover {
     color: var(--primary-color);
 }
 
@@ -39,12 +53,14 @@ a {
     align-items: center;
 }
 
-figcaption{
+figcaption {
   word-break: break-word;
 }
 
 nav {
     padding-top: 2em;
+    padding-right: 1.5em;
+    padding-left: 1.1em;
 }
 
 .main {
@@ -73,12 +89,14 @@ nav {
 
 :root {
     --primary-color: #4a4a4a;
+    --secondary-color: black;
     --font-color: black;
     --bg-color: white;
 }
 
 [data-theme="dark"] {
     --primary-color: white;
+    --secondary-color: black;
     --font-color: white;
     --bg-color: #0d1117;
 }
