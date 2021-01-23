@@ -1,16 +1,9 @@
 {{ define "main" }}
-    {{ $paginator := .Paginator }}
-
-    <div class="columns is-centered is-multiline">
-        {{ range $paginator.Pages }}
-        <div class="column is-8">
-            {{ partial "summary.html" . }}
-        </div>
+<div class="content">
+    <ul>
+        {{ range .Data.Terms.Alphabetical }}
+        <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a> ({{ .Count }})</li>
         {{ end }}
-
-        <div class="column is-8">
-            {{ partial "paginator.html" $paginator }}
-        </div>
-    </div>
-
+    </ul>
+</div>
 {{ end }}

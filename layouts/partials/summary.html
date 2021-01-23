@@ -1,25 +1,22 @@
-<div class="card">
-  {{ with .Params.cover }}
-  <div class="card-image">
-    <figure class="image ">
-        <img class="image" src="{{ . }}" >
+  
+  {{ if .Params.cover }}
+  <div class="block">
+    <figure class="image">
+      <a href="{{ .RelPermalink }}">
+        <img class="image" src="{{ .Params.cover }}">
+      </a>
     </figure>
   </div>
   {{ end }}
 
-  <div class="card-content">
-    <div class="media">
-      <div class="media-content">
+  <div class="block">
+    <div class="has-text-weight-bold is-size-4"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></div>
 
-        <p class="has-text-weight-semibold is-size-4"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></p>
-
-        {{ if isset .Params "author" }}
-        <p class="subtitle is-size-7 has-text-grey-light">
-            <a href="/author/{{ .Params.author | urlize }}">{{ .Params.author }}</a> &middot; {{ .Date.Format "January 2, 2006" }}
-        </p>
+    <div class="block is-size-7 has-text-grey-light">
+        {{ if .Params.author }}
+        <a href="/author/{{ .Params.author | urlize }}">{{ .Params.author }}</a> &middot;
         {{ end }}
-        
-      </div>
+        {{ with .Date }}{{ .Format "January 2, 2006" }}{{end}}
     </div>
 
     {{ with .Summary }}
@@ -32,4 +29,4 @@
     <a class="tag" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
     {{ end}}
   </div>
-</div>
+  <hr>

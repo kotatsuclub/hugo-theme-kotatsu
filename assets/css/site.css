@@ -1,0 +1,102 @@
+/*! hugo-theme-kotatsuclub */
+
+html,
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-color);
+  color: var(--font-color);
+}
+
+body > footer {
+    margin-top: auto;
+}
+
+.footer {
+    background-color: var(--bg-color);
+}
+
+
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6, 
+.content h1, 
+.content h2, 
+.content h3, 
+.content h4, 
+.content h5, 
+.content h6, 
+.content strong,
+.subtitle {
+    color: var(--primary-color);
+}
+
+a.tag, a.tag:hover {
+    color: var(--secondary-color)
+}
+
+a, a:hover {
+    color: var(--primary-color);
+}
+
+.content a {
+    text-decoration: underline;
+}
+
+.columns.is-vcentered {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+figcaption {
+  word-break: break-word;
+}
+
+nav {
+    padding-top: 2em;
+    padding-right: 1.5em;
+    padding-left: 1.1em;
+}
+
+.main {
+    max-width: 50rem;
+    column-width: 50rem;
+}
+
+.icon-md {
+    overflow: visible;
+    width: .875em;
+    vertical-align: -.225em;
+    font-size: 1.3333333333em;
+    line-height: .75em;
+    display: inline-block;
+    height: 1em;
+}
+
+.icon-lg {
+    overflow: visible;
+    width: 1em;
+    font-size: 3em;
+    display: inline-block;
+    height: 1em;
+    vertical-align: -.125em;
+}
+
+:root {
+    --primary-color: #4a4a4a;
+    --secondary-color: black;
+    --font-color: black;
+    --bg-color: white;
+}
+
+[data-theme="dark"] {
+    --primary-color: white;
+    --secondary-color: black;
+    --font-color: white;
+    --bg-color: #0d1117;
+}
