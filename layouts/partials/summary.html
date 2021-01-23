@@ -1,21 +1,23 @@
   
+  {{ if .Params.cover }}
   <div class="block">
-  {{ with .Params.cover }}
     <figure class="image">
-        <img class="image" src="{{ . }}" >
+      <a href="{{ .RelPermalink }}">
+        <img class="image" src="{{ .Params.cover }}">
+      </a>
     </figure>
-  {{ end }}
   </div>
+  {{ end }}
 
   <div class="block">
-    <p class="has-text-weight-semibold is-size-4"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></p>
+    <div class="has-text-weight-bold is-size-4"><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></div>
 
-    <p class="subtitle is-size-7 has-text-grey-light">
-        {{ if isset .Params "author" }}
+    <div class="block is-size-7 has-text-grey-light">
+        {{ if .Params.author }}
         <a href="/author/{{ .Params.author | urlize }}">{{ .Params.author }}</a> &middot;
         {{ end }}
         {{ with .Date }}{{ .Format "January 2, 2006" }}{{end}}
-    </p>
+    </div>
 
     {{ with .Summary }}
     <div class="content">

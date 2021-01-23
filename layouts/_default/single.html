@@ -1,14 +1,14 @@
 {{ define "main" }}
-    <h1 class="block has-text-weight-semibold is-size-3">
+    <h1 class="has-text-weight-bold is-size-4">
         {{ .LinkTitle }}
     </h1>
 
-    {{ if isset .Params "author" }}
-    <div class="block">
-        <p class="has-text-weight-semibold is-size-6"><a href="/author/{{ .Params.author | urlize }}">{{ .Params.author }}</a></p>
-        <p class="subtitle is-7 has-text-grey-light">{{ .Date.Format "January 2, 2006" }}</p>
+    <div class="block is-size-7 has-text-grey-light">
+        {{ if .Params.author }}
+        <a href="/author/{{ .Params.author | urlize }}">{{ .Params.author }}</a> &middot;
+        {{ end }}
+        {{ with .Date }}{{ .Format "January 2, 2006" }}{{end}}
     </div>
-    {{ end }}
 
     <div class="content block">
         {{ .Content }}
