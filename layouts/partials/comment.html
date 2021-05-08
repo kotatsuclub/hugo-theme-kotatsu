@@ -1,0 +1,31 @@
+{{ range .Replies }}
+<article class="media">
+    <figure class="media-left">
+      {{ with .Image }}
+      <p class="image is-32x32">
+        <img src="{{ . }}">
+      </p>
+      {{ end }}
+    </figure>
+    <div class="media-content">
+        <div class="content">
+            <p>
+                {{ with .Author }}
+                <strong>{{ . }}</strong> 
+                {{ end }}
+
+                {{ with .Date }}
+                <span class="is-size-7 has-text-grey-light"> &middot; {{ . }}</span>
+                {{ end }}
+                
+                {{ with .Content }}
+                <div class="block">
+                    {{ . | markdownify }}
+                </div>
+                {{ end }}
+            </p>
+        </div>
+        {{ partial "comment.html" . }}
+    </div>
+</article>
+{{ end }}
