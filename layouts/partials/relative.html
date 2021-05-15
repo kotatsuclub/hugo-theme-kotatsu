@@ -1,12 +1,12 @@
 <div class="block columns is-mobile is-size-7">
     <div class="column">
         {{ if .NextPage }}
-            <a href="{{ .NextPage.Permalink }}" aria-label="Previous">« {{ .NextPage.Title | truncate 50 "..."}}</a>
+            <a href="{{ .NextPage.Permalink }}" aria-label="Previous">« {{ .NextPage.Title | truncate 50 "..."}}</a>
         {{ end }}
     </div>
     <div class="column">
         {{ if .PrevPage }}
-            <a class="is-pulled-right" href="{{ .PrevPage.Permalink }}" aria-label="Next">{{ .PrevPage.Title | truncate 50 "..."}} »</a>
+            <a class="is-pulled-right" href="{{ .PrevPage.Permalink }}" aria-label="Next">{{ .PrevPage.Title | truncate 50 "..."}} »</a>
         {{ end }}
     </div>
 </div>    
