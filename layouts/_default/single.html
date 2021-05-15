@@ -20,22 +20,19 @@
         {{ end}}
     </div>
 
-    {{ if isset $.Site.Data "comments" }}
-        {{ $slug := .RelPermalink | replaceRE "/" "" }}
-        {{ with (index $.Site.Data.comments $slug) }}
-        <div class="block">
+    {{ partial "relative.html" . }}
+
+    <div class="block">
+        {{ $data := (.Resources.GetMatch "comments.json") }}
+        {{ with $data }}
             <hr>
             <h1 class="has-text-weight-bold is-size-5">Responses to <i>{{$.Title}}</i></h1>
             <br>
-            {{ partial "comment.html" . }}
-        </div>
+            {{ partial "comment.html" (dict "context" (.Content | transform.Unmarshal)) }}
+        {{ else }}
+            {{- if (not .Params.disableDisqus) -}}
+                {{ template "_internal/disqus.html" . }}
+            {{- end -}}
         {{ end }}
-    {{ end }}
-
-    {{ if not .Params.disqusDisabled }}
-    <div class="block">
-        {{ template "_internal/disqus.html" . }}
     </div>
-    {{ end }}
 {{ end }}
-

@@ -1,5 +1,6 @@
-{{ range .Replies }}
-<article class="media">
+{{ $mobile := .mobile }}
+{{ range .context.Replies }}
+<article comment-id="{{.ID}}" {{ if .ReplyTo }}reply-to="{{.ParentID}}"{{end}} class="media {{if $mobile}}is-hidden-desktop{{end}}">
     <figure class="media-left">
       {{ with .Image }}
       <p class="image is-32x32">
@@ -18,14 +19,27 @@
                 <span class="is-size-7 has-text-grey-light"> &middot; {{ . }}</span>
                 {{ end }}
                 
-                {{ with .Content }}
-                <div class="block">
-                    {{ . | markdownify }}
-                </div>
+                {{ if $mobile }}
+                    <div class="block is-hidden-desktop has-text-grey-light">
+                    {{ if ne .Author .ReplyTo }}
+                        {{ if .ReplyTo }}
+                        <small>@{{ .ReplyTo }}</small>
+                        {{ end }}
+                    {{ end }}
+                    </div>
                 {{ end }}
+
+                <div class="block">
+                {{ with .Content }}
+                    {{ . | markdownify }}
+                {{ end }}
+                </div>
             </p>
         </div>
-        {{ partial "comment.html" . }}
+        <div class="is-hidden-touch">
+            {{ partial "comment.html" (dict "context" .) }}
+        </div>
     </div>
 </article>
+{{ partial "comment.html" (dict "context" . "mobile" true)}}
 {{ end }}
