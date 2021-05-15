@@ -1,0 +1,14 @@
+{{ define "main" }}
+    {{ $paginator := .Paginate (where .Site.RegularPages "Type" "post").ByPublishDate.Reverse }}
+
+    {{ range $paginator.Pages }}
+    <div class="block">
+        {{ partial "summary.html" . }}
+    </div>
+    {{ end }}
+
+    <div class="block">
+        {{ partial "paginator.html" $paginator }}
+    </div>
+    
+{{ end }}
