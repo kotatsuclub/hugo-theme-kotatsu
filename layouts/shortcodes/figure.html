@@ -1,0 +1,43 @@
+{{- $width := .Get "width" -}}
+{{- $height := .Get "height" -}}
+{{- $source := .Get "src" -}}
+{{- $link := .Get "link" -}}
+{{- $imageResource := .Page.Resources.GetMatch $source -}}
+{{- with $imageResource -}}
+    {{- if ne .MediaType.SubType "gif" -}}
+        {{- if and $height $width -}}
+            {{- $link = .RelPermalink -}}
+            {{- $image := .Resize (printf "%sx%s q100 Lanczos" $width $height) -}}
+            {{- $source = $image.RelPermalink -}}
+        {{- end -}}
+    {{ end -}}
+{{- end -}}
+
+<figure class="{{ with .Get "class" }}{{ . }}{{ else }}image has-ratio{{ end }}">
+    {{- if $link -}}
+    <a href="{{ $link }}"{{ with .Get "target" }} target="{{ . }}"{{ end }}{{ with .Get "rel" }} rel="{{ . }}"{{ end }}>
+    {{- end -}}
+    <img src="{{ $source }}"
+        {{- if or (.Get "alt") $source }}
+            alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ $source }}{{ end }}"
+        {{- end -}}
+        {{- with $width }} width="{{ . }}"{{ end -}}
+        {{- with $height }} height="{{ . }}"{{ end -}}
+    />
+    {{- if $link }}</a>{{ end -}}
+    {{- if or (or (.Get "title") (.Get "caption")) (.Get "attr") -}}
+        <figcaption>
+            {{ with ($.Get "title") -}}
+                <h4>{{ . }}</h4>
+            {{- end -}}
+            {{- if or ($.Get "caption") ($.Get "attr") -}}<p>
+                {{- $.Get "caption" | markdownify -}}
+                {{- with $.Get "attrlink" }}
+                    <a href="{{ . }}">
+                {{- end -}}
+                {{- $.Get "attr" | markdownify -}}
+                {{- if $.Get "attrlink" }}</a>{{ end }}</p>
+            {{- end }}
+        </figcaption>
+    {{- end }}
+</figure>

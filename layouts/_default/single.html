@@ -20,8 +20,19 @@
         {{ end}}
     </div>
 
+    {{ partial "relative.html" . }}
+
     <div class="block">
-        {{ template "_internal/disqus.html" . }}
+        {{ $data := (.Resources.GetMatch "comments.json") }}
+        {{ with $data }}
+            <hr>
+            <h1 class="has-text-weight-bold is-size-5">Responses to <i>{{$.Title}}</i></h1>
+            <br>
+            {{ partial "comment.html" (dict "context" (.Content | transform.Unmarshal)) }}
+        {{ else }}
+            {{- if (not .Params.disableDisqus) -}}
+                {{ template "_internal/disqus.html" . }}
+            {{- end -}}
+        {{ end }}
     </div>
 {{ end }}
-
