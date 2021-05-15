@@ -2,11 +2,12 @@
 {{- $height := .Get "height" -}}
 {{- $source := .Get "src" -}}
 {{- $link := .Get "link" -}}
-{{- $imageResource := .Page.Resources.GetMatch $source -}}
-{{- with $imageResource -}}
-    {{- if ne .MediaType.SubType "gif" -}}
+{{- if not $link -}}{{ $link = $source }}{{ end -}}
+{{- $asset := .Page.Resources.GetMatch $source -}}
+{{- with $asset -}}
+    {{- if eq $link $source -}}{{ $link = .RelPermalink }}{{- end }}
+    {{- if in "gif png jpg jpeg" .MediaType.SubType -}}
         {{- if and $height $width -}}
-            {{- $link = .RelPermalink -}}
             {{- $image := .Resize (printf "%sx%s q100 Lanczos" $width $height) -}}
             {{- $source = $image.RelPermalink -}}
         {{- end -}}

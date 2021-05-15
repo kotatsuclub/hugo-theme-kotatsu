@@ -1,9 +1,10 @@
   
   {{ if .Params.cover }}
-  <div class="block">
-    <figure class="image">
+  <div class="block ">
+    <figure class="image has-ratio">
       <a href="{{ .RelPermalink }}">
-        <img class="image" src="{{ .Params.cover }}">
+        {{- $asset := .Page.Resources.GetMatch .Params.cover -}}
+        <img class="image container" src="{{- with $asset -}}{{ .RelPermalink  }}{{ else }}{{ .Params.cover }}{{- end }}">
       </a>
     </figure>
   </div>
