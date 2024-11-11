@@ -101,9 +101,12 @@ nav {
     --bg-color: white;
 }
 
-[data-theme="dark"] {
-    --primary-color: white;
-    --secondary-color: black;
-    --font-color: white;
-    --bg-color: #0d1117;
+
+@media(prefers-color-scheme: dark) {
+    :root {
+        --primary-color: #bdbdbd;
+        --secondary-color: #1a1a1a;
+        --font-color: #e0e0e0;
+        --bg-color: #121212;
+    }
 }
